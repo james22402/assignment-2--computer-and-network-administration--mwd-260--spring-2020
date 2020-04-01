@@ -36,16 +36,33 @@ Write a global pre-commit hook that reports whether a commit is the first or sub
 A new commit should generate the following output:
 
 ```
+pre-commit: About to create the first commit...
+pre-commit: Testing for whitespace errors 😨
+pre-commit: No whitespace errors 😀
+[master (root-commit) f683f23] Initial commit
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ create mode 100644 file.txt
 ```
 
 Every subsequent commit should generate the following output:
 
 ```
+pre-commit: About to create a new commit...
+pre-commit: Testing for whitespace errors 😨
+pre-commit: No whitespace errors 😀
+[master 79e878d] Add content to file.txt
+ 1 file changed, 1 insertion(+)
 ```
 
 Trailing whitespace on a line and extra newlines should generate the following output:
 
 ```
+pre-commit: About to create a new commit...
+pre-commit: Testing for whitespace errors 😨
+file.txt:4: trailing whitespace.
++
+file.txt:2: new blank line at EOF.
+pre-commit: Aborting commit due to whitespace errors ☹️
 ```
 
 When you’re done, do the following:
